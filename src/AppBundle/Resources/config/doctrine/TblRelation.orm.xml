@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\TblRelation" table="tbl_relation">
+    <indexes>
+      <index name="fk_tbl_relation_tbl_website_idx" columns="id_parent"/>
+      <index name="fk_tbl_relation_tbl_website1_idx" columns="id_site"/>
+      <index name="fk_tbl_relation_tbl_project1_idx" columns="id_project"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <many-to-one field="idSite" target-entity="TblWebsite" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_site" referenced-column-name="id_website"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idParent" target-entity="TblWebsite" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_parent" referenced-column-name="id_website"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="idProject" target-entity="TblProject" fetch="LAZY">
+      <join-columns>
+        <join-column name="id_project" referenced-column-name="id_project"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

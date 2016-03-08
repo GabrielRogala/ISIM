@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            {{home.getTitle()}}
+            <div class="list-group" role="group" aria-label="...">
+                {% for s in subsites %}
+                    <a class="list-group-item" href="{{ path('sumsite', {'website': home.getPath(), 'subsite': s.getIdSite().getPath() }) }}">{{s.getIdSite().getTitle()}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-5">
+                {{site.getBlock1()}}
+            </div>
+            <div class="col-sm-7">
+                {{site.getBlock2()}}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                {{site.getBlock3()}}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-theme.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css')}}">
+{% endblock %}
+
+{% block javascripts %}
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
+{% endblock %}
